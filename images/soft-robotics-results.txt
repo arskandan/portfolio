@@ -1,0 +1,6 @@
+This folder contains images for the soft robotics project.
+
+Image files needed:
+1. soft-robotics-hardware.jpg - Shows the TPU skin block with capacitive proximity sensor and pressure sensor
+2. soft-robotics-system.jpg - Shows the complete system with touch detection, sensor fusion pipeline, and output results
+3. soft-robotics-data.jpg - Shows the raw sensor signals and detection results (graphs a, b, c)
