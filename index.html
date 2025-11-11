@@ -93,7 +93,11 @@
 								
 								<h3>Raytracer Optimization | Eindhoven University of Technology</h3>
 								<p>Jan. 2024 – Feb. 2024</p>
-								<p>Optimized a ray-tracing engine using BVH and 3D-DDA algorithms, reducing computation time from ~1800 s to ~60 s (~45× speedup).</p>
+								<p>A raytracer is a graphics rendering algorithm that generates realistic images by simulating how light rays travel and interact with objects in a 3D scene. While raytracing produces highly detailed and accurate images, it is also computationally expensive, since millions of rays must be traced to calculate reflections, refractions, and shadows. This makes optimization essential to reduce computation time and display results faster. In this project, my task was to work on the optimization of the raytracer so that images could be rendered more efficiently.</p>
+								
+								<p>To achieve this, I used three key techniques. First, I implemented a Bounding Volume Hierarchy (BVH), which organizes objects in the scene into a tree structure of bounding boxes. This allows the algorithm to quickly skip large parts of the scene that rays will never hit, instead of checking every object individually. Second, I used a 3-Dimensional Digital Differential Analyzer (3D-DDA), an efficient algorithm for traversing a grid, which speeds up ray traversal by stepping through the 3D space in a structured way instead of testing every possible intersection. Finally, I applied parallel computing, distributing the computation of rays across multiple cores so that many rays could be processed at the same time.</p>
+								
+								<p>By combining these methods, the raytracer's performance improved exponentially, with faster rendering times and smoother visualization of results. Results achieved approximately 45× speedup, reducing computation time from approximately 1800 seconds to approximately 60 seconds.</p>
 								
 								<h3>Finite Element Analysis | Eindhoven University of Technology</h3>
 								<p>Nov. 2023 – Dec. 2023</p>
