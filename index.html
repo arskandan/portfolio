@@ -8,7 +8,9 @@
 	<head>
 		<title>A.R. Skandan - Robotics & Control Systems Engineer</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="A.R. Skandan – engineer making hardware, software and data work as one: RFID and machine learning in logistics automation, robotics and control systems." />
+		<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231b1f22' stroke='%237cc4e8' stroke-width='3'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -25,9 +27,11 @@
 						<div class="content">
 							<div class="inner">
 								<h1>A.R. Skandan</h1>
-								<p>Mechanical Engineer - Control Systems and Robotics<br />
-								<div style="height:1em;"></div>
-																Mobile Robotics | Soft Robotics | Sensor Fusion | Control Algorithms | Signal Processing</p>
+								<p>
+									<span class="tagline">Mechanical Engineer - Control Systems and Robotics</span>
+									<span class="keywords">Machine Learning | Sensors | Hardware | Software | Data | Automation<br />
+									Robotics | Control Systems | Signal Processing</span>
+								</p>
 							</div>
 						</div>
 						<nav>
@@ -47,15 +51,63 @@
 						<!-- Intro -->
 							<article id="intro">
 								<h2 class="major">About</h2>
-								<p>Master's graduate in Mechanical Engineering, specialization in Control Systems and Robotics. Hands-on experience in mobile/soft robotics, sensor fusion, control algorithms and signal processing. Known for a collaborative and positive mindset with a strong willingness to learn, combined with effective problem-solving and communication skills. Driven to apply and expand my expertise in industry-focused engineering projects.</p>
+								<p>Engineer who makes hardware, software and data work as one. From robots that sense touch to systems that track thousands of items in seconds, I build technology that performs in the real world.</p>
+								<p>Currently working in logistics automation, I take ideas from first test to proven solution and help clients see exactly what the technology can do for them. A strong mechanical engineering background, with specialization in robotics and control systems, lets me see the full picture from design to working system.</p>
+								<p>A collaborative team player who is eager to learn, takes ownership and delivers results.</p>
 								
-								<p><strong>Contact:</strong> +31684794333 | arskandan@gmail.com | 5641RA Eindhoven, NL</p>
+								<p><strong>Contact:</strong> +31684794333 | arskandan@gmail.com | 2132GB Hoofddorp, Netherlands</p>
 							</article>
 
 						<!-- Work -->
 							<article id="work">
 								<h2 class="major">Projects</h2>
-								
+
+								<h3>AI RFID Tunnel</h3>
+								<h4>Mieloo &amp; Alexander</h4>
+								<p><strong>Problem:</strong> RFID readers on a conveyor also read tags from neighbouring boxes, so a simple count gave the correct contents for only 53% of boxes.</p>
+
+								<span class="image main"><img src="images/rfid-tunnel-setup.jpeg" alt="The RFID tunnel: a roller conveyor with two reader portals" /></span>
+
+								<p><strong>Solution:</strong> The tunnel consists of two RFID portals over a conveyor, each with an antenna and a sensor that detects when a box passes. For every box, I engineered features per tag based on its read counts, signal strength (RSSI) and timing at each portal, and how strongly it was associated with the current box compared with the neighbouring boxes. The model learns from the signal behaviour alone, without any knowledge of the expected box contents.</p>
+
+								<p>Using these features, I developed an ensemble model in Python that combines a neural network with a gradient-boosted decision tree model (LightGBM). A post-processing step ensures that each tag is assigned to only one box. When the model is uncertain about any tag, the box is flagged for manual verification instead of being guessed, which keeps incorrect results out of the system. A real-time engine processes each box as it passes through the tunnel, and a live dashboard displays the counted quantity and status of every box.</p>
+
+								<span class="image main"><img src="images/rfid-tunnel-board-replay-2026-10-26_5boxes_slow.gif" alt="Live board showing boxes passing through the RFID tunnel and the number of items counted in each" /></span>
+
+								<p><strong>Results:</strong> The models were validated across several scenarios, including single boxes, boxes travelling back to back, and stationary boxes placed beside the tunnel to provoke cross-reads. The ensemble assigned 99.5% of the tags to the correct box and reduced the average counting error from 13 items to 0.13 items per box. The model also generalises to unknown boxes: when tested on boxes it had never seen during training, it still identified 99.5% of the tags correctly.</p>
+
+								<h3>AI RFID Transition Portal</h3>
+								<h4>Mieloo &amp; Alexander</h4>
+								<p><strong>Problem:</strong> An RFID gate between two areas also detects items that are only near it, so stock is wrongly recorded as moved.</p>
+
+								<span class="image main"><img src="images/rfid-transition-portal.jpeg" alt="AI RFID transition portal: a walk-through gate with an overhead RFID antenna" /></span>
+
+								<p><strong>Solution:</strong> The portal is a walk-through gate with two RFID antennas, one on each side. A tag that is genuinely carried through the gate follows a clear transition pattern: it is first read strongly by antenna 1, then by antenna 2, with its read count and signal strength (RSSI) rising and falling at each antenna in turn. A tag that is only nearby does not follow this pattern; it is typically read steadily or weakly by one or both antennas without a clear handover.</p>
+
+								<p>I extracted read-count and RSSI features for each antenna over time and trained an XGBoost model to recognise this transition pattern. The model decides for each tag whether it truly passed from antenna 1 to antenna 2, so only items that actually moved through the portal are recorded. This gives an accurate, automated record of stock movement between areas without manual scanning.</p>
+
+								<p><strong>Results:</strong> The model correctly identified items passing through the portal with 98% accuracy.</p>
+
+								<h3>Cycle Count Trolley</h3>
+								<h4>Mieloo &amp; Alexander</h4>
+								<p><strong>Problem:</strong> Counting stock by hand is slow and error-prone, and handheld RFID scanners pick up tags from surrounding stock.</p>
+
+								<span class="image main"><img src="images/cycle-count-trolley.jpeg" alt="Cycle count trolley with the door closed (left) and open with a box inside (right)" /></span>
+
+								<p><strong>Solution:</strong> The Cycle Count Trolley is a mobile, self-contained RFID counting station. The operator places a box inside the cabinet and closes the door, and the trolley reads every tagged item in the box at once. The cabinet is RF-insulated, so the readers detect only the tags inside it, which eliminates cross-reads from the surroundings. The results appear on the built-in touchscreen, and an on-board power supply allows the trolley to be moved freely around the warehouse or store.</p>
+
+								<p><strong>Results:</strong> The trolley reads 700 tags in 5 seconds with 99.96% accuracy, reducing a lengthy manual count to a few seconds per box.</p>
+
+								<h3>Virtual Shielding</h3>
+								<h4>Mieloo &amp; Alexander</h4>
+								<p><strong>Problem:</strong> When staff scan the sales floor with a handheld RFID scanner, it also reads tags in the stockroom through the walls, so the two areas get mixed up.</p>
+
+								<span class="image main"><img src="images/virtual-shielding.gif" alt="Animation: a handheld RFID scanner reads tags on the sales floor and through the wall in the stockroom; the rule engine then sorts each tag into the right area" /></span>
+
+								<p><strong>Solution:</strong> Physical RF shielding between areas is expensive and impractical. Instead, I designed and built a rule engine that acts as a virtual shield. It analyses the read data from the handheld RFID scanner for each tag, such as its read counts and signal strength (RSSI), and applies a set of rules to determine whether the tag is located in the stockroom or on the sales floor. This gives an accurate view of where stock is in the store without any changes to the building.</p>
+
+								<p><strong>Results:</strong> The rule engine correctly located tags in the stockroom or on the sales floor with 95.8% accuracy.</p>
+
 								<h3>Master Graduation Project – Soft Robotics</h3>
 								<h4>Eindhoven University of Technology</h4>
 								<p><small>Dec. 2024 – Sep. 2025 | Eindhoven, Netherlands</small></p>
@@ -150,12 +202,15 @@
 							<article id="skills">
 								<h2 class="major">Skills</h2>
 								
-								<p><strong>Technical Skills:</strong> System Modeling | Simulation | Control Algorithms | Sensor Fusion | Machine Learning | Mobile Robotics | Soft Robotics | Signal Processing | Embedded Systems</p>
-								<p><strong>Software Skills:</strong> C/C++ | Python | MATLAB | Simulink | ROS | Git | Docker | CAD | Ansys | Visual Studio | Gazebo | Paraview | MS Office</p>
-								<p><strong>Libraries:</strong> NumPy | SciPy | Pandas | scikit-learn | Matplotlib | joblib | Eigen | YALMIP</p>
-								<p><strong>Sensors:</strong> Lidar | Odometer | Pneumatic Pressure | Capacitive Proximity | Load Cell | Encoder</p>
-								<p><strong>Control Techniques:</strong> PID | Feedforward | Loop Shaping | Feedback | Fuzzy Logic | Behavior Trees | Feedback Linearization | Backstepping</p>	
-								<p><strong>Soft Skills:</strong> Communication | Teamwork | Presentation | Problem Solving | Adaptability</p>
+								<p><strong>Technical Skills:</strong> System Modeling | Simulation | Control Algorithms | Sensor Fusion | Machine Learning | Feature Engineering | Data Analysis | Automation | Hardware Integration | Software Development | Rule Engines | Real-Time Data Processing | Mobile Robotics | Soft Robotics | Signal Processing | Embedded Systems | Finite Element Analysis | Prototyping and Testing</p>
+								<p><strong>Machine Learning:</strong> Gradient Boosting | Neural Networks | Ensemble Models | Classification | Regression | Cross-Validation | Model Deployment</p>
+								<p><strong>Robotics and Algorithms:</strong> Path Planning (A*, Potential Fields) | Localization (Particle Filters) | ROS2 Nav2 | Bounding Volume Hierarchy | 3D-DDA | Parallel Computing</p>
+								<p><strong>Software Skills:</strong> C/C++ | Python | MATLAB | Simulink | ROS2 | Git | Docker | FastAPI | RabbitMQ | SQLite | pytest | CI/CD | CAD | Ansys | Visual Studio | Gazebo | Paraview | MS Office</p>
+								<p><strong>Libraries:</strong> NumPy | SciPy | Pandas | scikit-learn | XGBoost | LightGBM | PyTorch | Matplotlib | joblib | Eigen | YALMIP | Fuzzylite</p>
+								<p><strong>Hardware and Sensors:</strong> RFID (fixed and handheld readers) | Zebra FX9600 | Light-Beam Sensors | Lidar | Odometer | Pneumatic Pressure | Capacitive Proximity | Load Cell | Encoder | 3D Printing</p>
+								<p><strong>Control Techniques:</strong> PID | Feedforward | Loop Shaping | Frequency Response Analysis | Feedback | Fuzzy Logic | Behavior Trees | Feedback Linearization | Backstepping</p>
+								<p><strong>Domain:</strong> Logistics Automation | RFID Systems | Inventory and Cycle Counting | Retail Stock Tracking | Proof of Concept to Pilot</p>
+								<p><strong>Soft Skills:</strong> Communication | Teamwork | Presentation | Client Demonstrations | Problem Solving | Adaptability | Ownership</p>
 								<p><strong>Languages:</strong> English (Bilingual) | Hindi (Native) | Tamil (Native) | Dutch (Beginner)</p>
 							</article>
 
@@ -164,7 +219,7 @@
 								<h2 class="major">Contact</h2>
 								<p><strong>Phone:</strong> +31684794333</p>
 								<p><strong>Email:</strong> arskandan@gmail.com</p>
-								<p><strong>Location:</strong> 5641RA Eindhoven, NL</p>
+								<p><strong>Location:</strong> 2132GB Hoofddorp, Netherlands</p>
 								
 								<h3>Connect With Me</h3>
 								<ul class="icons">
@@ -434,6 +489,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/portfolio.js"></script>
 
 	</body>
 </html>

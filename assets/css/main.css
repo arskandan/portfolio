@@ -1555,8 +1555,8 @@ input, select, textarea {
 			transition: opacity 0.325s ease-in-out, transform 0.325s ease-in-out;
 			padding: 4.5rem 2.5rem 1.5rem 2.5rem ;
 			position: relative;
-			width: 40rem;
-			max-width: 100%;
+			width: 100%;
+			max-width: 72rem;
 			background-color: rgba(27, 31, 34, 0.85);
 			border-radius: 4px;
 			opacity: 0;
@@ -1670,3 +1670,230 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* ==========================================================================
+   Portfolio polish (custom layer on top of the Dimension template)
+   ========================================================================== */
+
+	:root {
+		--accent: #7cc4e8;
+		--text-soft: rgba(255, 255, 255, 0.82);
+		--text-muted: rgba(255, 255, 255, 0.55);
+		--hairline: rgba(255, 255, 255, 0.12);
+	}
+
+	::selection {
+		background: rgba(124, 196, 232, 0.35);
+		color: #ffffff;
+	}
+
+	a:focus-visible, button:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+	}
+
+/* Header */
+
+	#header .logo {
+		width: 7rem;
+		height: 7rem;
+		border: solid 2px rgba(255, 255, 255, 0.9);
+		box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06), 0 12px 30px rgba(0, 0, 0, 0.35);
+	}
+
+	#header .content .inner .tagline {
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	#header .content .inner .keywords {
+		display: block;
+		color: var(--text-muted);
+		font-size: 0.85rem;
+		letter-spacing: 0.06rem;
+		line-height: 1.9;
+	}
+
+	#header nav ul li a {
+		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	}
+
+		#header nav ul li a:hover {
+			color: var(--accent);
+		}
+
+/* Article panels */
+
+	#main article {
+		max-width: 72rem;
+		background-color: rgba(24, 27, 31, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.07);
+		border-radius: 10px;
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+	}
+
+	#main article p {
+		color: var(--text-soft);
+		line-height: 1.8;
+	}
+
+	#main article strong {
+		color: #ffffff;
+	}
+
+	@media screen and (min-width: 1280px) {
+		#main article {
+			padding: 5rem 4.5rem 2.5rem 4.5rem;
+		}
+
+		#main article p {
+			font-size: 1.075rem;
+		}
+	}
+
+	#main article h2.major {
+		border-bottom: 2px solid var(--accent);
+	}
+
+/* Projects: one clear block per project */
+
+	#work h3 {
+		margin: 4rem 0 0.35rem 0;
+		padding-top: 3.5rem;
+		border-top: 1px solid var(--hairline);
+		letter-spacing: 0.15rem;
+		line-height: 1.35;
+	}
+
+		#work h2.major + h3 {
+			margin-top: 0;
+			padding-top: 0;
+			border-top: 0;
+		}
+
+	#work h4 {
+		color: var(--accent);
+		font-weight: 600;
+		letter-spacing: 0.18rem;
+		margin-bottom: 0.4rem;
+	}
+
+	#work p small {
+		color: var(--text-muted);
+		letter-spacing: 0.04rem;
+	}
+
+	#work h4 + p {
+		margin-top: 1.25rem;
+	}
+
+	#work p > strong:first-child {
+		color: var(--accent);
+		font-weight: 600;
+		letter-spacing: 0.02rem;
+	}
+
+/* Images: centred, no grey band, soft shadow, fit one screen */
+
+	#main article .image.main {
+		display: flex;
+		justify-content: center;
+		margin: 2.25rem 0 2.5rem 0;
+	}
+
+		#main article .image.main:before {
+			display: none;
+		}
+
+		#main article .image.main img {
+			width: auto;
+			max-width: 100%;
+			max-height: 75vh;
+			border-radius: 8px;
+			box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+		}
+
+/* Hobbies */
+
+	#extracurricular h3 {
+		font-size: 1.1rem;
+		letter-spacing: 0.15rem;
+	}
+
+/* Skills: each item becomes a chip (built in assets/js/portfolio.js) */
+
+	#skills p {
+		margin-bottom: 1.75rem;
+	}
+
+	#skills .skill-label {
+		display: block;
+		margin-bottom: 0.65rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.18rem;
+		text-transform: uppercase;
+	}
+
+	#skills .chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	#skills .chip {
+		display: inline-block;
+		padding: 0.3rem 0.8rem;
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.04);
+		color: var(--text-soft);
+		font-size: 0.9rem;
+		line-height: 1.5;
+		transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+	}
+
+		#skills .chip:hover {
+			border-color: var(--accent);
+			background: rgba(124, 196, 232, 0.1);
+			color: #ffffff;
+		}
+
+/* Contact icons */
+
+	#contact ul.icons li a {
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
+
+		#contact ul.icons li a:hover {
+			color: var(--accent);
+			transform: translateY(-2px);
+		}
+
+/* Small screens */
+
+	@media screen and (max-width: 736px) {
+		#work h3 {
+			margin-top: 3rem;
+			padding-top: 2.5rem;
+			font-size: 1.2rem;
+		}
+
+		#header .logo {
+			width: 6rem;
+			height: 6rem;
+		}
+
+		#skills .chip {
+			font-size: 0.85rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#skills .chip, #contact ul.icons li a, #header nav ul li a {
+			transition: none;
+		}
+	}
