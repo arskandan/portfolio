@@ -8,10 +8,10 @@ Engineer who makes hardware, software and data work as one. Currently working in
 
 | Project | What it does |
 |---|---|
-| **AI RFID Tunnel** | Ensemble model (neural network + LightGBM) that decides which RFID tags belong to each box on a conveyor. 99.5% of tags assigned correctly, also on unseen boxes. |
-| **AI RFID Transition Portal** | XGBoost model that recognises the antenna 1 → antenna 2 transition pattern of tags carried through a gate. 98% accuracy. |
-| **Cycle Count Trolley** | Mobile, RF-insulated RFID counting station without cross-reads. 700 tags in 5 seconds at 99.96% accuracy. |
-| **Virtual Shielding** | Rule engine that tells stockroom tags from sales-floor tags in handheld RFID scans. 95.8% accuracy. |
+| **AI RFID Tunnel** | Counting the items in each box on a conveyor. 99.5% of tags assigned correctly, also for unknown boxes. |
+| **AI RFID Transition Portal** | Recording the items carried through an RFID gate. 98% accuracy. |
+| **Cycle Count Trolley** | Fast stock counting. 700 tags in 5 seconds at 99.96% accuracy. |
+| **Virtual Shielding** | Telling stockroom tags from sales-floor tags in handheld RFID scans. 95.8% accuracy. |
 | **Soft Robotics – Master Graduation Project** | Multi-modal robotic skin fusing pressure and capacitive proximity sensing for force and contact location. |
 | **Hospital Mobile Robotics** | Right-lane following and lane changing with behavior trees and fuzzy logic in ROS2 Nav2. |
 | **Mobile Robot Waiter** | Global (A*) and local (potential field) path planning with particle-filter localization. |

@@ -68,13 +68,13 @@
 
 								<span class="image main"><img src="images/rfid-tunnel-setup.jpeg" alt="The RFID tunnel: a roller conveyor with two reader portals" /></span>
 
-								<p><strong>Solution:</strong> The tunnel consists of two RFID portals over a conveyor, each with an antenna and a sensor that detects when a box passes. For every box, I engineered features per tag based on its read counts, signal strength (RSSI) and timing at each portal, and how strongly it was associated with the current box compared with the neighbouring boxes. The model learns from the signal behaviour alone, without any knowledge of the expected box contents.</p>
+								<p><strong>Solution:</strong> I developed a machine learning based solution that works out which items belong to each box, so that every box is counted correctly.</p>
 
-								<p>Using these features, I developed an ensemble model in Python that combines a neural network with a gradient-boosted decision tree model (LightGBM). A post-processing step ensures that each tag is assigned to only one box. When the model is uncertain about any tag, the box is flagged for manual verification instead of being guessed, which keeps incorrect results out of the system. A real-time engine processes each box as it passes through the tunnel, and a live dashboard displays the counted quantity and status of every box.</p>
+								<p><strong>Skills:</strong> Machine Learning | Python | Data Analysis | RFID Systems | Real-Time Data Processing | Hardware Integration | Testing and Validation</p>
 
 								<span class="image main"><img src="images/rfid-tunnel-board-replay-2026-10-26_5boxes_slow.gif" alt="Live board showing boxes passing through the RFID tunnel and the number of items counted in each" /></span>
 
-								<p><strong>Results:</strong> The models were validated across several scenarios, including single boxes, boxes travelling back to back, and stationary boxes placed beside the tunnel to provoke cross-reads. The ensemble assigned 99.5% of the tags to the correct box and reduced the average counting error from 13 items to 0.13 items per box. The model also generalises to unknown boxes: when tested on boxes it had never seen during training, it still identified 99.5% of the tags correctly.</p>
+								<p><strong>Results:</strong> 99.5% of the tags were assigned to the correct box, also for unknown boxes, and the average counting error dropped from 13 items to 0.13 items per box.</p>
 
 								<h3>AI RFID Transition Portal</h3>
 								<h4>Mieloo &amp; Alexander</h4>
@@ -82,11 +82,11 @@
 
 								<span class="image main"><img src="images/rfid-transition-portal.jpeg" alt="AI RFID transition portal: a walk-through gate with an overhead RFID antenna" /></span>
 
-								<p><strong>Solution:</strong> The portal is a walk-through gate with two RFID antennas, one on each side. A tag that is genuinely carried through the gate follows a clear transition pattern: it is first read strongly by antenna 1, then by antenna 2, with its read count and signal strength (RSSI) rising and falling at each antenna in turn. A tag that is only nearby does not follow this pattern; it is typically read steadily or weakly by one or both antennas without a clear handover.</p>
+								<p><strong>Solution:</strong> I developed a machine learning based solution that records only the items that actually pass through the gate.</p>
 
-								<p>I extracted read-count and RSSI features for each antenna over time and trained an XGBoost model to recognise this transition pattern. The model decides for each tag whether it truly passed from antenna 1 to antenna 2, so only items that actually moved through the portal are recorded. This gives an accurate, automated record of stock movement between areas without manual scanning.</p>
+								<p><strong>Skills:</strong> Machine Learning | Python | Data Analysis | RFID Systems | Testing and Validation</p>
 
-								<p><strong>Results:</strong> The model correctly identified items passing through the portal with 98% accuracy.</p>
+								<p><strong>Results:</strong> Items passing through the portal were identified with 98% accuracy.</p>
 
 								<h3>Cycle Count Trolley</h3>
 								<h4>Mieloo &amp; Alexander</h4>
@@ -94,19 +94,23 @@
 
 								<span class="image main"><img src="images/cycle-count-trolley.jpeg" alt="Cycle count trolley with the door closed (left) and open with a box inside (right)" /></span>
 
-								<p><strong>Solution:</strong> The Cycle Count Trolley is a mobile, self-contained RFID counting station. The operator places a box inside the cabinet and closes the door, and the trolley reads every tagged item in the box at once. The cabinet is RF-insulated, so the readers detect only the tags inside it, which eliminates cross-reads from the surroundings. The results appear on the built-in touchscreen, and an on-board power supply allows the trolley to be moved freely around the warehouse or store.</p>
+								<p><strong>Solution:</strong> A mobile RFID counting station that counts a full box of items quickly and accurately.</p>
 
-								<p><strong>Results:</strong> The trolley reads 700 tags in 5 seconds with 99.96% accuracy, reducing a lengthy manual count to a few seconds per box.</p>
+								<p><strong>Skills:</strong> RFID Systems | Hardware Integration | Prototyping | Testing and Validation</p>
+
+								<p><strong>Results:</strong> 700 tags read in 5 seconds with 99.96% accuracy.</p>
 
 								<h3>Virtual Shielding</h3>
 								<h4>Mieloo &amp; Alexander</h4>
 								<p><strong>Problem:</strong> When staff scan the sales floor with a handheld RFID scanner, it also reads tags in the stockroom through the walls, so the two areas get mixed up.</p>
 
-								<span class="image main"><img src="images/virtual-shielding.gif" alt="Animation: a handheld RFID scanner reads tags on the sales floor and through the wall in the stockroom; the rule engine then sorts each tag into the right area" /></span>
+								<span class="image main"><img src="images/virtual-shielding.gif" alt="Animation: a handheld RFID scanner also reads stockroom tags through the wall; with virtual shielding each tag is shown in the right area" /></span>
 
-								<p><strong>Solution:</strong> Physical RF shielding between areas is expensive and impractical. Instead, I designed and built a rule engine that acts as a virtual shield. It analyses the read data from the handheld RFID scanner for each tag, such as its read counts and signal strength (RSSI), and applies a set of rules to determine whether the tag is located in the stockroom or on the sales floor. This gives an accurate view of where stock is in the store without any changes to the building.</p>
+								<p><strong>Solution:</strong> I developed a software solution that shows whether each tag is in the stockroom or on the sales floor.</p>
 
-								<p><strong>Results:</strong> The rule engine correctly located tags in the stockroom or on the sales floor with 95.8% accuracy.</p>
+								<p><strong>Skills:</strong> Python | Data Analysis | RFID Systems | Software Development | Testing and Validation</p>
+
+								<p><strong>Results:</strong> Tags were placed in the stockroom or on the sales floor with 95.8% accuracy.</p>
 
 								<h3>Master Graduation Project – Soft Robotics</h3>
 								<h4>Eindhoven University of Technology</h4>
